@@ -1,6 +1,6 @@
 import React from "react";
 // import logo from './logo.png'
-
+import './App2.css';
 function PdfUploader1() {
     const handleSubmit = (event) => {
         event.preventDefault();

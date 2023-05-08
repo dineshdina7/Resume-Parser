@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './App1.css';
 function PdfUploader() {
   const [selectedFile, setSelectedFile] = useState(null);
 

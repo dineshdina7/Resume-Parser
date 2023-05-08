@@ -26,7 +26,7 @@ function PdfUploader() {
 
               <h3>Resume Parser</h3>
 
-              <label for="upload_resume">Upload Resume</label>
+              <label for="upload_resume"><h6>Upload Resume</h6></label>
               <br/>
 
               <input className="pdfupload"

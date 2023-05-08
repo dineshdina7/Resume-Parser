@@ -1,18 +1,21 @@
-/*import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from "react";
 
-function ContainerOutsideExample() {
+const Navbar = () => {
+
   return (
-    <Container>
-      <Navbar expand="lg" variant="light" bg="light">
-        <Container>
-          <Navbar.Brand href="#">Navbar</Navbar.Brand>
-        </Container>
-      </Navbar>
-    </Container>
+    <div className="nav">
+      <div className="nav-logo-container">
+      </div>
+      <div className="navbar-links-container">
+        <a href="">Home</a>
+        <a href="">About</a>
+        <a href="">Sign Up</a>
+        <a href="">Contact</a>
+        <button className="primary-button-navbar">Login</button>
+      </div>
+    </div>
   );
-}
+};
 
-export default ContainerOutsideExample;
-*/
-
+export default Navbar;

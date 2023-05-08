@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 function PdfUploader() {
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -12,7 +13,9 @@ function PdfUploader() {
   };
 
   return (
-    <body className="App">
+    <body>
+    <div className="App">
+
     <div className="limiter">
 
       <div className="container-login">
@@ -38,7 +41,7 @@ function PdfUploader() {
               <br/>
               <br/>
               
-              <button type="button"  className="btn btn-outline-secondary" onClick={handleSubmit}>Parse Resume</button>
+              <button type="button"  className="btn btn-size btn-outline-secondary" onClick={handleSubmit}>Parse Resume</button>
               <br/>
 
             </form>
@@ -49,6 +52,7 @@ function PdfUploader() {
 
       </div>
 
+    </div>
     </div>
     </body>
 

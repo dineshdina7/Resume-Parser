@@ -23,7 +23,7 @@ function PdfUploader1() {
                                     <td className="tabledata1">Name</td>
                                         <td className="tabledata2">
                                                 
-                                                    <span className="btn1 btn-light details">***</span>
+                                                    <span className="btn-data btn-data-light details">***</span>
                                                     <br/>
                                                 
                                         </td>
@@ -32,7 +32,7 @@ function PdfUploader1() {
                                     <td className="tabledata1">Phone</td>
                                         <td className="tabledata2">
                                                 
-                                            <span className="btn1 btn-light details">***</span>
+                                            <span className="btn-data btn-data-light details">***</span>
                                             <br/>
                                                 
                                         </td>
@@ -41,11 +41,11 @@ function PdfUploader1() {
                                     <td className="tabledata1">Skills</td>
                                         <td className="tabledata2">
                                                 
-                                            <span className="btn1 btn-light details">***</span>
+                                            <span className="btn-data btn-data-light details">***</span>
                                                 
-                                            <span className="btn1 btn-light details"> ***</span>
+                                            <span className="btn-data btn-data-light details"> ***</span>
                                                 
-                                            <span className="btn1 btn-light details"> ***</span>
+                                            <span className="btn-data btn-data-light details"> ***</span>
                                                 
                                         </td>
                                 </tr>
@@ -53,7 +53,7 @@ function PdfUploader1() {
                                     <td className="tabledata1">Achievements</td>
                                         <td className="tabledata2">
                                                 
-                                            <span className="btn1 btn-light details">***</span>
+                                            <span className="btn-data btn-data-light details">***</span>
                                             <br/>
                                                 
                                         </td>
@@ -62,7 +62,7 @@ function PdfUploader1() {
                                     <td className="tabledata1">Objective/Career Objective</td>
                                         <td className="tabledata2">
                                                 
-                                            <span className="btn1 btn-light details">***</span>
+                                            <span className="btn-data btn-data-light details">***</span>
                                             <br/>
                                                 
                                         </td>
@@ -71,7 +71,7 @@ function PdfUploader1() {
                                     <td className="tabledata1">Date of birth</td>
                                         <td className="tabledata2">
                                                 
-                                            <span className="btn1 btn-light details">***</span>
+                                            <span className="btn-data btn-data-light details">***</span>
                                             <br/>
                                                 
                                         </td>
@@ -80,7 +80,7 @@ function PdfUploader1() {
                                     <td className="tabledata1">Address</td>
                                         <td className="tabledata2">
                                                 
-                                            <span className="btn1 btn-light details">***</span>
+                                            <span className="btn-data btn-data-light details">***</span>
                                             <br/>
                                                 
                                         </td>
@@ -89,7 +89,7 @@ function PdfUploader1() {
                                     <td className="tabledata1">Email</td>
                                         <td>
                                             {/* <img src={logo} alt="Email" className="email-logo"/> */}
-                                            <span className="btn1 btn-light details">***</span> 
+                                            <span className="btn-data btn-data-light details">***</span> 
 
                                         </td>
                                 </tr>
@@ -97,13 +97,13 @@ function PdfUploader1() {
                                     <td className="tabledata1">Graduation details</td>
                                         <td className="tabledata2">
                                                 
-                                            <span className="btn1 btn-light details"><span className="tabledata1">College :</span>****</span>
+                                            <span className="btn-data btn-data-light details"><span className="tabledata1">College :</span>****</span>
                                                 
-                                            <span className="btn1 btn-light details"><span className="tabledata1">Degree :</span> ****</span>
+                                            <span className="btn-data btn-data-light details"><span className="tabledata1">Degree :</span> ****</span>
                                                 
-                                            <span className="btn1 btn-light details"><span className="tabledata1">CPI :</span> ***</span>
+                                            <span className="btn-data btn-data-light details"><span className="tabledata1">CPI :</span> ***</span>
                                                 
-                                            <span className="btn1 btn-light details"><span className="tabledata1">Duration :</span> ***</span>
+                                            <span className="btn-data btn-data-light details"><span className="tabledata1">Duration :</span> ***</span>
                                                 
                                         </td>
                                 </tr>
@@ -112,7 +112,7 @@ function PdfUploader1() {
 
                         </table>
                         <div className="login-button">
-                            <button type="button"  className="btn btn-outline-secondary" onClick={handleSubmit}>Submit</button>
+                            <button type="button"  className="btn btn-size btn-outline-secondary" onClick={handleSubmit}>Submit</button>
                         </div>
 
                     </div>

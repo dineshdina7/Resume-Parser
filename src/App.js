@@ -16,6 +16,7 @@ class App extends Component {
 }
 
 export default App;
+
 /*import { useState } from "react";
 import LoggedIn from "./ResumeParser/LoggedIn/LoggedIn";
 import LoginForm from "./ResumeParser/LoginForm/LoginForm";

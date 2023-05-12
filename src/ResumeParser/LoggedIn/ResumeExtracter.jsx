@@ -1,4 +1,5 @@
 import React from "react";
+import "./LoggedIn.css";
 // import logo from './logo.png'
 
 function PdfUploader1() {
@@ -59,7 +60,7 @@ function PdfUploader1() {
                                         </td>
                                 </tr>
                                 <tr>
-                                    <td className="tabledata1">Objective/Career Objective</td>
+                                    <td className="tabledata1">Objective/ Career Objective</td>
                                         <td className="tabledata2">
                                                 
                                             <span className="btn-data btn-data-light details">***</span>

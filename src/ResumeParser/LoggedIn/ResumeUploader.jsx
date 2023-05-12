@@ -1,16 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./LoggedIn.css";
 
 function PdfUploader() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const navigate = useNavigate();
 
   const handleFileUpload = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(selectedFile);
-  };
+  const handleSubmit = (event) => navigate('/PdfUploader1')
 
   return (
     <body>
@@ -41,7 +41,7 @@ function PdfUploader() {
               <br/>
               <br/>
               
-              <button type="button"  className="btn btn-size btn-outline-secondary" onClick={handleSubmit}>Parse Resume</button>
+              <button type="button"  className="btn btn-size" onClick={handleSubmit}>Parse Resume</button>
               <br/>
 
             </form>

@@ -1,29 +1,32 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
-import GoogleIcon from "@mui/icons-material/Google";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
+// import GoogleIcon from "@mui/icons-material/Google";
+// import FacebookIcon from "@mui/icons-material/Facebook";
+// import TwitterIcon from "@mui/icons-material/Twitter";
 import { database } from "../../Utils/database";
 
 const LoginForm = ({ setIsLoggedIn }) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
+  const navigate= useNavigate();
 
   const errors = {
-    username: "Invalid username",
+    email: "Invalid email",
     password: "Invalid password",
-    noUsername: "Please enter your username",
+    noEmail: "Please enter your email",
     noPassword: "Please enter your password",
   };
 
   const handleSubmit = (e) => {
     // Prevent page from reloading
     e.preventDefault();
+    navigate('/PdfUploader');
 
-    if (!username) {
-      // Username input is empty
-      setErrorMessages({ name: "noUsername", message: errors.noUsername });
+    if (!email) {
+      // Email input is empty
+      setErrorMessages({ name: "noEmail", message: errors.noEmail });
       return;
     }
 
@@ -34,7 +37,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
     }
 
     // Search for user credentials
-    const currentUser = database.find((user) => user.username === username);
+    const currentUser = database.find((user) => user.email === email);
 
     if (currentUser) {
       if (currentUser.password !== password) {
@@ -47,7 +50,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
       }
     } else {
       // Username doens't exist in the database
-      setErrorMessages({ name: "username", message: errors.username });
+      setErrorMessages({ name: "email", message: errors.email });
     }
   };
 
@@ -69,12 +72,12 @@ const LoginForm = ({ setIsLoggedIn }) => {
         <div className="inputs_container">
           <input
             type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          {renderErrorMsg("username")}
-          {renderErrorMsg("noUsername")}
+          {renderErrorMsg("email")}
+          {renderErrorMsg("noEmail")}
           <input
             type="password"
             placeholder="Password"
@@ -84,18 +87,16 @@ const LoginForm = ({ setIsLoggedIn }) => {
           {renderErrorMsg("password")}
           {renderErrorMsg("noPassword")}
         </div>
-        <input type="submit" value="Log In" className="login_button" />
+        <input type="submit" value="Log In" className="login_button"/>
       </form>
       <div className="link_container">
-        <a href="" className="small">
-          Forgot Password?
-        </a>
+      <p>Don't Have an Account? <a href="/SignUpForm" className="small">click here</a></p>
       </div>
-      <div className="icons">
+      {/* <div className="icons">
         <GoogleIcon className="icon" />
         <FacebookIcon className="icon" />
         <TwitterIcon className="icon" />
-      </div>
+      </div> */}
       </div>
       </div>
       </div>

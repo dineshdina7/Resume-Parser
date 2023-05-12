@@ -1,6 +1,6 @@
 export const database = [
     {
-      username: "user1",
+      email: "user1@gmail.com",
       password: "password1",
     },
     {

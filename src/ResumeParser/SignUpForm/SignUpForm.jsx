@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+// import { Routes, Route, useNavigate } from "react-router-dom";
 import "./SignUpForm.css";
 import { database } from "../../Utils/database";
+// import LoginForm from "./LoginForm/LoginForm.jsx";
 
 const SignUpForm = ({ setIsLoggedIn }) => {
   const [firstname, setFirstname] = useState("");
@@ -69,6 +71,9 @@ const SignUpForm = ({ setIsLoggedIn }) => {
     name === errorMessages.name && (
       <p className="error_msg">{errorMessages.message}</p>
     );
+  // <Routes>
+  //   <Route path="./LoginForm.jsx" element={<LoginForm/>}></Route>
+  // </Routes>
 
   return (
     <div className="limiter">
@@ -116,7 +121,7 @@ const SignUpForm = ({ setIsLoggedIn }) => {
         <input type="submit" value="Sign Up" className="signup_button" />
       </form>
       <div className="link_container">
-        <p>Already Have an Account? <a href="" className="small">click here</a></p>
+        <p>Already Have an Account? <a href="/LoginForm" className="small">click here</a></p>
       </div>
       </div>
       </div>

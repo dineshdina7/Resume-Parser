@@ -1,4 +1,8 @@
 import React from "react";
+import { BsFacebook } from 'react-icons/bs';
+import { BsInstagram } from 'react-icons/bs';
+import { BsTwitter } from 'react-icons/bs';
+import { BsLinkedin } from 'react-icons/bs';
 
 function NewFooter2 () {
   return (
@@ -22,7 +26,6 @@ function NewFooter2 () {
                 <li><a href="#">shipping</a></li>
                 <li><a href="#">returns</a></li>
                 <li><a href="#">order status</a></li>
-                <li><a href="#">payment options</a></li>
               </ul>
             </div>
             <div class="footer-col">
@@ -37,10 +40,10 @@ function NewFooter2 () {
             <div class="footer-col">
               <h4 className="footer-heading">follow us</h4>
               <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href=""><BsFacebook /></a>
+                <a href=""><BsInstagram/></a>
+                <a href=""><BsTwitter/></a>
+                <a href=""><BsLinkedin/></a>
               </div>
             </div>
           </div>

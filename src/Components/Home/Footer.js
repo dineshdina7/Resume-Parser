@@ -1,5 +1,4 @@
 import React from "react";
-import "./Home.css";
 
 function NewFooter2 () {
   return (

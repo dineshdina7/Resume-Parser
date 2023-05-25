@@ -1,26 +1,5 @@
-/*import  React from "react";
-
-
-const Navbar = () => {
-  return (
-    <nav>
-      <div className="nav-logo-container">
-      </div>
-      <div className="navbar-links-container">
-        <a href="SignUpForm">Sign Up</a>
-        <a href="/LoginForm">Login</a>
-        
-        <button className="primary-button">Resume Parser</button>
-      </div>
-    </nav>
-  )
-}
-
-export default Navbar;*/
-
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import "./NavBar.css";
 
 function NavBar() {
   const [click, setClick] = useState(false);

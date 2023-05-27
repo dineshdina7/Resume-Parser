@@ -4,7 +4,7 @@ import { BsInstagram } from 'react-icons/bs';
 import { BsTwitter } from 'react-icons/bs';
 import { BsLinkedin } from 'react-icons/bs';
 
-function NewFooter2 () {
+function Footer () {
   return (
     <div className="footer-container">
       <div className="footer-background">
@@ -53,4 +53,4 @@ function NewFooter2 () {
   )
 }
   
-export default NewFooter2;
+export default Footer;

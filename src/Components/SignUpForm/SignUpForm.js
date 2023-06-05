@@ -2,23 +2,25 @@ import React, { useState } from "react";
 import "./SignUpForm.css";
 import NavBar from "../Home/NavBar";
 import Footer from "../Home/Footer";
-import { database } from "../Utils/database";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = ({ setIsLoggedIn }) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userExists, setUserexists] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
+  
 
   const errors = {
-    email: "Invalid email",
-    password: "Invalid password",
     noEmail: "Please enter your email",
     noFirstname: "Please enter your First Name",
     noLastName: "Please enter your Last Name",
-    noPassword: "Please enter your password"
+    noPassword: "Please enter your password",
+    userExists: "User already exists"
   };
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     // Prevent page from reloading
@@ -38,7 +40,7 @@ const SignUpForm = ({ setIsLoggedIn }) => {
 
     if (!lastname) {
         // Last Name input is empty
-        setErrorMessages({ name: "noLastname", message: errors.noLastname });
+        setErrorMessages({ name: "noLastname", message: errors.noLastName });
         return;
       }
 
@@ -48,32 +50,39 @@ const SignUpForm = ({ setIsLoggedIn }) => {
       return;
     }
 
-    // Search for user credentials
-    const currentUser = database.find((user) => user.email === email);
-
-    if (currentUser) {
-      if (currentUser.password !== password) {
-        // Wrong password
-        setErrorMessages({ name: "password", message: errors.password });
-      } else {
-        // Correct password, log in user
-        setErrorMessages({});
-        setIsLoggedIn(true);
-      }
-    } else {
-      // Username doens't exist in the database
-      setErrorMessages({ name: "email", message: errors.email });
-    }
-  };
+    fetch("http://localhost:5000/register", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        firstname,
+        email,
+        lastname,
+        password,
+        
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+        if (data.status === "ok") {
+          navigate('/LoginForm');
+        } else {
+          setErrorMessages({ name: "userExists", message: errors.userExists });
+          return;
+        }
+      });
+    };
 
   // Render error messages
   const renderErrorMsg = (name) =>
     name === errorMessages.name && (
       <p className="error_msg">{errorMessages.message}</p>
     );
-  // <Routes>
-  //   <Route path="./LoginForm.jsx" element={<LoginForm/>}></Route>
-  // </Routes>
 
   return (
     <div>
@@ -121,9 +130,10 @@ const SignUpForm = ({ setIsLoggedIn }) => {
                 {renderErrorMsg("noPassword")}
               </div>
               <input type="submit" value="Sign Up" className="signup_button" />
+              {renderErrorMsg("userExists")}
             </form>
             <div className="link_container">
-              <p>Already Have an Account? <a href="/LoginForm" className="small">click here</a></p>
+              <p>Already have an Account? <a href="/LoginForm" className="small">Login</a></p>
             </div>
           </div>
         </div>

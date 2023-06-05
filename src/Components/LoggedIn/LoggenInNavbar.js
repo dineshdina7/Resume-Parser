@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function NavBar() {
+function LoggedInNavbar() {
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
@@ -22,37 +22,14 @@ function NavBar() {
             <li className="nav-item-header">
               <NavLink
                 exact
-                to="/Home"
+                to="/Contact"
                 activeClassName="active"
                 className="nav-links-header"
-                onClick={handleClick}
+                onClick={handleLogout}
               >
-                Home
+                Log Out
               </NavLink>
             </li>
-            <li className="nav-item-header">
-              <NavLink
-                exact
-                to="/SignUpForm"
-                activeClassName="active"
-                className="nav-links-header"
-                onClick={handleClick}
-              >
-                Sign Up
-              </NavLink>
-            </li>
-            <li className="nav-item-header">
-              <NavLink
-                exact
-                to="/LoginForm"
-                activeClassName="active"
-                className="nav-links-header"
-                onClick={handleClick}
-              >
-                Login
-              </NavLink>
-            </li>
-            
           </ul>
           <div className="nav-icon-header" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
@@ -63,4 +40,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default LoggedInNavbar;

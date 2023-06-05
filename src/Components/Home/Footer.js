@@ -15,26 +15,25 @@ function Footer () {
               <ul>
                 <li><a href="/About">About</a></li>
                 <li><a href="/Work">Work</a></li>
-                <li><a href="#">privacy policy</a></li>
-                <li><a href="#">affiliate program</a></li>
+                
               </ul>
             </div>
             <div class="footer-col">
               <h4 className="footer-heading">Other Projects</h4>
               <ul>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">shipping</a></li>
-                <li><a href="#">returns</a></li>
-                <li><a href="#">order status</a></li>
+                <li><a href="#">Resume Builder</a></li>
+                <li><a href="#">Resume Parser</a></li>
+                <li><a href="#">Guild Contribution Tracker</a></li>
+                <li><a href="#">Learning Path</a></li>
               </ul>
             </div>
             <div class="footer-col">
               <h4 className="footer-heading">Our Team</h4>
               <ul>
-                <li><a href="#">watch</a></li>
-                <li><a href="#">bag</a></li>
-                <li><a href="#">shoes</a></li>
-                <li><a href="#">dress</a></li>
+                <li><a href="#">Onkar</a></li>
+                <li><a href="#">Dinesh</a></li>
+                <li><a href="#">Pavithra</a></li>
+                <li><a href="#">Akash</a></li>
               </ul>
             </div>
             <div class="footer-col">

@@ -10,11 +10,12 @@ import {BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 function App(){
+  const isLoggedIn =window.localStorage.getItem("loggedIn");
     return (
       <div >
         <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/" element={isLoggedIn === "true"?<ResumeUploader/> : <Home/>}/>
           <Route path="/Home" element={<Home/>}/>
           <Route path="/SignUpForm" element={<SignUpForm/>}/>
           <Route path="/LoginForm" element={<LoginForm/>}/>

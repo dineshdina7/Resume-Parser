@@ -4,14 +4,12 @@ import Footer from "../Home/Footer";
 import { useNavigate } from "react-router-dom";
 import "./LoggedIn.css";
 import axios from "axios";
-// function ResumeUploader() {
-//   const navigate = useNavigate();
-//   const [responseData, setResponseData] = useState(null);
 
-  
 function ResumeUploader() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [responseData, setResponseData] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
@@ -19,8 +17,9 @@ function ResumeUploader() {
     formData.append("file", file);
 
     try {
+      setIsLoading(true);
       const response = await axios.post(
-        'http://127.0.0.1:5000/parse_resume',
+        "http://127.0.0.1:5000/parse_resume",
         formData,
         {
           headers: {
@@ -28,41 +27,23 @@ function ResumeUploader() {
           }
         }
       );
-      console.log(response.data);
+      setIsLoading(false);
       setResponseData(response.data);
-      console.log(responseData);
+      setError(null);
     } catch (error) {
-      console.error(error);
+      setIsLoading(false);
     }
   };
 
-    
-
-  //   try {
-  //     const response = await axios.post('http://192.168.1.6:5000/upload',formData, {
-  //       headers:{
-  //         'Content-Type': 'multipart/formdata',
-
-  //       }
-  //     });
-
-  //     if (response.ok) {
-  //       const data = await response.json()
-  //       setResponseData(data);
-  //       // console.log('hiiii',data);
-  //     } else {
-  //       throw new Error("Failed to upload file");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   const handleSubmit = () => {
-    navigate("/ResumeExtracter", { state: { responseData } });
+    if (responseData) {
+      navigate("/ResumeExtracter", { state: { responseData } });
+    } else {
+      setError("Please upload a resume file first.");
+    }
   };
 
- return (
+  return (
     <div>
       <LoggedInNavbar />
       <div className="resume-body">
@@ -85,13 +66,18 @@ function ResumeUploader() {
                     />
                     <br />
                     <br />
-                    <button
-                      type="button"
-                      className="btn btn-size"
-                      onClick={handleSubmit}
-                    >
-                      Parse Resume
-                    </button>
+                    {isLoading ? (
+                      <div>Loading...</div>
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn btn-size"
+                        onClick={handleSubmit}
+                      >
+                        Parse Resume
+                      </button>
+                    )}
+                    {error && <div className="error_msg">{error}</div>}
                     <br />
                   </form>
                 </div>
@@ -104,6 +90,5 @@ function ResumeUploader() {
     </div>
   );
 }
-
 
 export default ResumeUploader;

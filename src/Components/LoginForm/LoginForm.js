@@ -8,7 +8,8 @@ const LoginForm = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
-  const navigate= useNavigate();
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const errors = {
     email: "Invalid email",
@@ -18,22 +19,17 @@ const LoginForm = ({ setIsLoggedIn }) => {
   };
 
   const handleSubmit = (e) => {
-    // Prevent page from reloading
     e.preventDefault();
-    
 
     if (!email) {
-      // Email input is empty
       setErrorMessages({ name: "noEmail", message: errors.noEmail });
       return;
     }
 
     if (!password) {
-      // Password input is empty
       setErrorMessages({ name: "noPassword", message: errors.noPassword });
       return;
     }
-
 
     fetch("http://localhost:5000/login-user", {
       method: "POST",
@@ -50,39 +46,30 @@ const LoginForm = ({ setIsLoggedIn }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "userRegister");
         if (data.status === "ok") {
-          alert("login successful");
+          setLoginSuccess(true);
           localStorage.setItem("token", data.data);
-            localStorage.setItem("loggedIn", true);
-          navigate('/ResumeUploader');
+          localStorage.setItem("loggedIn", true);
+          setTimeout(() => {
+            navigate("/ResumeUploader"); // Redirect to the next page after a delay
+          }, 1000); // Delay for 1 second
 
-        }
-        else{
-          window.alert("Invalid Credentials");
+        } else if (data.status === "invalidUsername") {
+          setErrorMessages({
+            name: "invalidUsername",
+            message: "Invalid username",
+          });
+          setPassword(""); // Reset the password field
+        } else {
+          setErrorMessages({
+            name: "invalidCredentials",
+            message: "Invalid credentials",
+          });
+          setPassword(""); // Reset the password field
         }
       });
-
-
-    // Search for user credentials
-    // const currentUser = database.find((user) => user.email === email);
-
-    // if (currentUser) {
-    //   if (currentUser.password !== password) {
-    //     // Wrong password
-    //     setErrorMessages({ name: "password", message: errors.password });
-    //   } else {
-    //     // Correct password, log in user
-    //     setErrorMessages({});
-    //     setIsLoggedIn(true);
-    //   }
-    // } else {
-    //   // Username doens't exist in the database
-    //   setErrorMessages({ name: "email", message: errors.email });
-    // }
   };
 
-  // Render error messages
   const renderErrorMsg = (name) =>
     name === errorMessages.name && (
       <p className="error_msg">{errorMessages.message}</p>
@@ -90,7 +77,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
 
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <div className="limiter">
         <div className="card-container">
           <div className="card">
@@ -116,16 +103,26 @@ const LoginForm = ({ setIsLoggedIn }) => {
                 />
                 {renderErrorMsg("password")}
                 {renderErrorMsg("noPassword")}
+                {renderErrorMsg("invalidUsername")}
+                {renderErrorMsg("invalidCredentials")}
+                {loginSuccess && (
+                  <p className="success_msg">Login successful!</p>
+                )}
               </div>
-              <input type="submit" value="Log In" className="login_button"/>
+              <input type="submit" value="Log In" className="login_button" />
             </form>
             <div className="link_container">
-              <p>Don't have an Account? <a href="/SignUpForm" className="small">Sign Up</a></p>
+              <p>
+                Don't have an Account?{" "}
+                <a href="/SignUpForm" className="small">
+                  Sign Up
+                </a>
+              </p>
             </div>
-           </div>
+          </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

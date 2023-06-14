@@ -9,44 +9,54 @@ const SignUpForm = ({ setIsLoggedIn }) => {
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userExists, setUserexists] = useState("");
+  const [successMessage, setSuccessMessage] = useState(""); // New state for success message
   const [errorMessages, setErrorMessages] = useState({});
-  
 
   const errors = {
     noEmail: "Please enter your email",
+    invalidEmail: "Please enter a valid email",
     noFirstname: "Please enter your First Name",
     noLastName: "Please enter your Last Name",
     noPassword: "Please enter your password",
-    userExists: "User already exists"
+    invalidPassword: "Password must be at least 8 characters long",
+    userExists: "User already exists",
   };
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    // Prevent page from reloading
     e.preventDefault();
 
     if (!email) {
-        // Username input is empty
-        setErrorMessages({ name: "noEmail", message: errors.noEmail });
-        return;
+      setErrorMessages({ name: "noEmail", message: errors.noEmail });
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setErrorMessages({ name: "invalidEmail", message: errors.invalidEmail });
+      return;
     }
 
     if (!firstname) {
-      // First Name input is empty
       setErrorMessages({ name: "noFirstname", message: errors.noFirstname });
       return;
     }
 
     if (!lastname) {
-        // Last Name input is empty
-        setErrorMessages({ name: "noLastname", message: errors.noLastName });
-        return;
-      }
+      setErrorMessages({ name: "noLastname", message: errors.noLastName });
+      return;
+    }
 
     if (!password) {
-      // Password input is empty
       setErrorMessages({ name: "noPassword", message: errors.noPassword });
+      return;
+    }
+
+    if (password.length < 8) {
+      setErrorMessages({
+        name: "invalidPassword",
+        message: errors.invalidPassword,
+
+      });
       return;
     }
 
@@ -63,22 +73,30 @@ const SignUpForm = ({ setIsLoggedIn }) => {
         email,
         lastname,
         password,
-        
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "userRegister");
         if (data.status === "ok") {
-          navigate('/LoginForm');
+          setSuccessMessage("Account created successfully"); // Set success message
+          setTimeout(() => {
+            navigate("/LoginForm");
+          }, 2000); // Navigate to the login page after 1 second
         } else {
           setErrorMessages({ name: "userExists", message: errors.userExists });
           return;
         }
       });
-    };
+  };
 
-  // Render error messages
+  const validateEmail = (email) => {
+    // Simple email format validation using regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+
+  };
+
   const renderErrorMsg = (name) =>
     name === errorMessages.name && (
       <p className="error_msg">{errorMessages.message}</p>
@@ -86,7 +104,7 @@ const SignUpForm = ({ setIsLoggedIn }) => {
 
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <div className="limiter">
         <div className="card-container">
           <div className="card">
@@ -94,6 +112,10 @@ const SignUpForm = ({ setIsLoggedIn }) => {
             <p className="subtitle">
               To keep connected with us please Sign Up with your personal info!
             </p>
+            {successMessage && (
+              <p className="success_msg">{successMessage}</p>
+            )}
+
             <form onSubmit={handleSubmit}>
               <div className="inputs_container">
                 <input
@@ -120,6 +142,7 @@ const SignUpForm = ({ setIsLoggedIn }) => {
                 />
                 {renderErrorMsg("email")}
                 {renderErrorMsg("noEmail")}
+                {renderErrorMsg("invalidEmail")} {/* Added error message */}
                 <input
                   type="password"
                   placeholder="Password"
@@ -128,19 +151,24 @@ const SignUpForm = ({ setIsLoggedIn }) => {
                 />
                 {renderErrorMsg("password")}
                 {renderErrorMsg("noPassword")}
+                {renderErrorMsg("invalidPassword")} {/* Added error message */}
               </div>
               <input type="submit" value="Sign Up" className="signup_button" />
               {renderErrorMsg("userExists")}
             </form>
             <div className="link_container">
-              <p>Already have an Account? <a href="/LoginForm" className="small">Login</a></p>
+              <p>
+                Already have an Account?{" "}
+                <a href="/LoginForm" className="small">
+                  Login
+                </a>
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="footer-width">
-      </div>
-      <Footer/>
+      <div className="footer-width"></div>
+      <Footer />
     </div>
   );
 };

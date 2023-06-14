@@ -56,7 +56,7 @@ function ResumeExtracter() {
                                     <td className="tabledata1">Email</td>
                                         <td>
                                             {/* <img src={logo} alt="Email" className="email-logo"/> */}
-                                            <span className="btn-data btn-data-light details">{responseData['email']==null ? "Dinesh":responseData['email']}</span> 
+                                            <span className="btn-data btn-data-light details">{responseData['email']==null ? "dineshdinaa777@gmail.com":responseData['email']}</span> 
 
                                         </td>
                                 </tr>
@@ -79,7 +79,7 @@ function ResumeExtracter() {
                                     <td className="tabledata1">Degree</td>
                                         <td className="tabledata2">
                                                 
-                                            <span className="btn-data btn-data-light details">{responseData['degree']==null ? "Dinesh":responseData['degree']}</span>
+                                            <span className="btn-data btn-data-light details">{responseData['degree']==null ? "Computer Science and Engineering":responseData['degree']}</span>
                                             <br/>
                                                 
                                         </td>
@@ -88,7 +88,7 @@ function ResumeExtracter() {
                                     <td className="tabledata1">Designation</td>
                                         <td className="tabledata2">
                                                 
-                                            <span className="btn-data btn-data-light details">{responseData['designation']==null ? "Dinesh":responseData['designation']}</span>
+                                            <span className="btn-data btn-data-light details">{responseData['designation']==null ? "Salesforce Developer":responseData['designation']}</span>
                                             <br/>
                                                 
                                         </td>
